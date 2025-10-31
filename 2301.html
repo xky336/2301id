@@ -6,11 +6,12 @@
     <title>北京时间与课程表</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: #f0f9ff; 
+            color: #333;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -18,40 +19,59 @@
             min-height: 100vh;
             margin: 0;
             padding: 20px;
+            background-image: url('https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/c546f206b6464f0f8cc888a095d0e6d4~tplv-a9rns2rl98-image.image?rcl=20251025135637EDD1AB42D65D1689EAAD&rk3s=8e244e95&rrcfp=f06b921b&x-expires=1763963889&x-signature=hRegtJaIYVxmiZugut5AC0xZyQU%3D');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-blend-mode: overlay;
         }
         
         .time-container {
             text-align: center;
-            background-color: rgba(30, 64, 175, 0.3);
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.9) 0%, rgba(255, 127, 80, 0.9) 100%); 
             padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
             margin-bottom: 30px;
             width: 100%;
             max-width: 800px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: pulse 3s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            }
+            to {
+                transform: scale(1.02);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            }
         }
         
         h1 {
             font-size: 3rem;
             margin-bottom: 20px;
-            color: #60a5fa;
+            color: #fff;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
         
         .date {
             font-size: 1.5rem;
             margin-bottom: 10px;
-            color: #93c5fd;
+            color: #f1f5f9;
         }
         
         .time {
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: bold;
             letter-spacing: 2px;
-            color: #f8fafc;
+            color: white;
             text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             margin: 20px 0;
+            font-family: 'Arial Black', sans-serif;
         }
         
         .time span {
@@ -77,53 +97,123 @@
         }
         
         .info-box {
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.3);
             padding: 15px 25px;
             border-radius: 10px;
             text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         .info-box p:first-child {
             font-size: 0.9rem;
-            color: #94a3b8;
+            color: #f1f5f9;
             margin-bottom: 5px;
         }
         
         .info-box p:last-child {
             font-size: 1.2rem;
             font-weight: bold;
-            color: #f8fafc;
+            color: white;
+        }
+
+        .main-container {
+            display: flex;
+            width: 100%;
+            max-width: 1600px; /* 加宽容器最大宽度 */
+            gap: 20px;
+        }
+
+        .homework-area {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            width: 280px;
+        }
+
+        .homework-area h2 {
+            color: #4a90e2;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .homework-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .homework-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f0f9ff;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .homework-item:hover {
+            background-color: #e6f7ff;
+            transform: translateY(-3px);
+        }
+
+        .homework-item h3 {
+            margin: 0 0 5px 0;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .homework-item p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
         }
 
         .timetable-container {
-            width: 100%;
-            max-width: 1200px;
+            flex: 1; /* 让课程表容器占据剩余所有宽度 */
             overflow-x: auto;
-            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            color: #f8fafc;
+            color: #333;
         }
 
         th, td {
-            border: 1px solid #475569;
-            padding: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 12px 8px;
             text-align: center;
         }
 
         th {
-            background-color: #1e3a8a;
+            background-color: #4a90e2; 
+            color: white;
         }
 
         tr:nth-child(even) {
-            background-color: #1e293b;
+            background-color: #f0f9ff;
         }
 
         tr:nth-child(odd) {
-            background-color: #0f172a;
+            background-color: white;
+        }
+
+        tr:hover {
+            background-color: #e6f7ff;
         }
 
         .subject {
@@ -131,18 +221,83 @@
         }
 
         .teacher {
-            color: #f8fafc;
+            color: #333;
         }
 
         .course-type {
             font-size: 0.8rem;
-            color: #94a3b8;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background-color: #ff7f50; 
+        }
+
+        .timetable-container h2 {
+            color: #4a90e2; 
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
         }
 
         footer {
             margin-top: 40px;
-            color: #94a3b8;
+            color: #333;
             font-size: 0.9rem;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .calligraphy {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 5rem;
+            color: #4a90e2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            transform: rotate(-5deg);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            position: absolute;
+        }
+        
+        .calligraphy:hover {
+            transform: rotate(0deg) scale(1.1);
+            opacity: 1;
+        }
+        
+        .calligraphy-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .link-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #4a90e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a90e2;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .link-icon:hover {
+            background-color: #4a90e2;
+            color: white;
+            transform: scale(1.1);
         }
         
         @media (max-width: 768px) {
@@ -158,15 +313,30 @@
                 flex-direction: column;
                 gap: 15px;
             }
+            .main-container {
+                flex-direction: column;
+            }
+            .homework-area {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 新增的超链接图标 -->
+    <a href="./食谱.html" class="link-icon" target="_blank">
+        <i class="fa fa-cutlery"></i>
+    </a>
+
+    <div class="calligraphy-container">
+        <div class="calligraphy" style="top: 10%; left: 5%;">静心</div>
+        <div class="calligraphy" style="top: 10%; right: 8%;">勤奋</div>
+        <div class="calligraphy" style="top: 30%; left: 5%;">坚持</div>
+    </div>
+    
     <div class="time-container">
         <h1><i class="fa fa-clock-o"></i> 北京时间</h1>
-        
         <div class="date" id="dateDisplay">2024-05-20 星期一</div>
-        
         <div class="time" id="timeDisplay">
             <span id="hours">00</span>
             <span class="separator">:</span>
@@ -174,7 +344,6 @@
             <span class="separator">:</span>
             <span id="seconds">00</span>
         </div>
-        
         <div class="info">
             <div class="info-box">
                 <p>时区</p>
@@ -187,189 +356,209 @@
         </div>
     </div>
 
-    <div class="timetable-container">
-        <h2 class="text-2xl text-center mb-4 text-60a5fa">2301班课程表</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>班级</th>
-                    <th>2301</th>
-                    <th>教室</th>
-                    <th>惠风楼104</th>
-                    <th>班主任</th>
-                    <th>刘顺华</th>
-                    <th>科目</th>
-                    <th>周课时</th>
-                    <th>任课教师</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <th>节次</th>
-                    <th>时间</th>
-                    <th>星期一</th>
-                    <th>星期二</th>
-                    <th>星期三</th>
-                    <th>星期四</th>
-                    <th>星期五</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td>8:00-8:30</td>
-                    <td colspan="5">早读/安全天天讲</td>
-                    <td>思想政治</td>
-                    <td>2</td>
-                    <td>杨冬梅 <span class="course-type">公共基础课</span></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>8:40-9:20</td>
-                    <td>办公软件</td>
-                    <td>计算机文化基础</td>
-                    <td>ACCESS数据库</td>
-                    <td>英语</td>
-                    <td>思想政治</td>
-                    <td>语文</td>
-                    <td>4</td>
-                    <td>吴小艳 <span class="course-type">公共基础课</span></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>9:30-10:10</td>
-                    <td>办公软件</td>
-                    <td>计算机文化基础</td>
-                    <td>ACCESS数据库</td>
-                    <td>英语</td>
-                    <td>思想政治</td>
-                    <td>数学</td>
-                    <td>4</td>
-                    <td>车晓玲 <span class="course-type">公共基础课</span></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>10:10-10:30</td>
-                    <td colspan="5">课间操</td>
-                    <td>英语</td>
-                    <td>2</td>
-                    <td>甘卫儒 <span class="course-type">公共基础课</span></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>10:30-11:10</td>
-                    <td>计算机网络技术</td>
-                    <td>体育与健康</td>
-                    <td>语文</td>
-                    <td>计算机网络技术</td>
-                    <td>办公软件</td>
-                    <td>体育与健康</td>
-                    <td>2</td>
-                    <td>李海 <span class="course-type">公共基础课</span></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>11:20-12:00</td>
-                    <td>计算机网络技术</td>
-                    <td>体育与健康</td>
-                    <td>语文</td>
-                    <td>计算机网络技术</td>
-                    <td>办公软件</td>
-                    <td>计算机文化基础</td>
-                    <td>4</td>
-                    <td>龚永明 <span class="course-type">专业高考课</span></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td colspan="5">午休</td>
-                    <td>ACCESS数据库</td>
-                    <td>2</td>
-                    <td>童杰 <span class="course-type">专业高考课</span></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>14:00-14:40</td>
-                    <td>语文</td>
-                    <td>数学</td>
-                    <td>数学</td>
-                    <td rowspan="2">社团活动</td>
-                    <td>计算机文化基础</td>
-                    <td>办公软件</td>
-                    <td>4</td>
-                    <td>杨丽 <span class="course-type">专业高考课</span></td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>14:50-15:30</td>
-                    <td>语文</td>
-                    <td>数学</td>
-                    <td>数学</td>
-                    <td>计算机文化基础</td>
-                    <td>计算机网络技术</td>
-                    <td>4</td>
-                    <td>张林 <span class="course-type">专业高考课</span></td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>15:40-16:20</td>
-                    <td>体育活动</td>
-                    <td>体育活动</td>
-                    <td>体育活动</td>
-                    <td></td>
-                    <td>体育活动</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td colspan="5">课外活动</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>19:00-19:40</td>
-                    <td>晚自习</td>
-                    <td>晚自习</td>
-                    <td>晚自习</td>
-                    <td>主题班会</td>
-                    <td>心理健康</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>19:50-20:30</td>
-                    <td>晚自习</td>
-                    <td>晚自习</td>
-                    <td>晚自习</td>
-                    <td>主题班会</td>
-                    <td>百家讲堂</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>周课时</td>
-                    <td>28</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="main-container">
+        <div class="homework-area">
+            <h2>本周任务</h2>
+            <ul class="homework-list">
+                <li class="homework-item">
+                    <h3>语文背诵琵琶行</h3>
+                    <p>周六之前完成</p>
+                </li>
+                <li class="homework-item">
+                    <h3>文化基础资料</h3>
+                    <p>周六之前完成</p>
+                </li>
+                <li class="homework-item">
+                    <h3></h3>
+                    <p></p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="timetable-container">
+            <h2>2301班课程表</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>班级</th>
+                        <th>2301</th>
+                        <th>教室</th>
+                        <th>惠风楼104</th>
+                        <th>班主任</th>
+                        <th>刘顺华</th>
+                        <th>科目</th>
+                        <th>周课时</th>
+                        <th>任课教师</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>节次</th>
+                        <th>时间</th>
+                        <th>星期一</th>
+                        <th>星期二</th>
+                        <th>星期三</th>
+                        <th>星期四</th>
+                        <th>星期五</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>8:00-8:30</td>
+                        <td colspan="5">早读/安全天天讲</td>
+                        <td>思想政治</td>
+                        <td>2</td>
+                        <td>杨冬梅 <span class="course-type">公共基础课</span></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>8:40-9:20</td>
+                        <td>办公软件</td>
+                        <td>计算机文化基础</td>
+                        <td>ACCESS数据库</td>
+                        <td>英语</td>
+                        <td>思想政治</td>
+                        <td>语文</td>
+                        <td>4</td>
+                        <td>吴小艳 <span class="course-type">公共基础课</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>9:30-10:10</td>
+                        <td>办公软件</td>
+                        <td>计算机文化基础</td>
+                        <td>ACCESS数据库</td>
+                        <td>英语</td>
+                        <td>思想政治</td>
+                        <td>数学</td>
+                        <td>4</td>
+                        <td>车晓玲 <span class="course-type">公共基础课</span></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>10:10-10:30</td>
+                        <td colspan="5">课间操</td>
+                        <td>英语</td>
+                        <td>2</td>
+                        <td>甘卫儒 <span class="course-type">公共基础课</span></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>10:30-11:10</td>
+                        <td>计算机网络技术</td>
+                        <td>体育与健康</td>
+                        <td>语文</td>
+                        <td>计算机网络技术</td>
+                        <td>办公软件</td>
+                        <td>体育与健康</td>
+                        <td>2</td>
+                        <td>李海 <span class="course-type">公共基础课</span></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>11:20-12:00</td>
+                        <td>计算机网络技术</td>
+                        <td>体育与健康</td>
+                        <td>语文</td>
+                        <td>计算机网络技术</td>
+                        <td>办公软件</td>
+                        <td>计算机文化基础</td>
+                        <td>4</td>
+                        <td>龚永明 <span class="course-type">专业高考课</span></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td colspan="5">午休</td>
+                        <td>ACCESS数据库</td>
+                        <td>2</td>
+                        <td>童杰 <span class="course-type">专业高考课</span></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>14:00-14:40</td>
+                        <td>语文</td>
+                        <td>数学</td>
+                        <td>数学</td>
+                        <td rowspan="2">社团活动</td>
+                        <td>计算机文化基础</td>
+                        <td>办公软件</td>
+                        <td>4</td>
+                        <td>杨丽 <span class="course-type">专业高考课</span></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>14:50-15:30</td>
+                        <td>语文</td>
+                        <td>数学</td>
+                        <td>数学</td>
+                        <td>计算机文化基础</td>
+                        <td>计算机网络技术</td>
+                        <td>4</td>
+                        <td>张林 <span class="course-type">专业高考课</span></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>15:40-16:20</td>
+                        <td>体育活动</td>
+                        <td>体育活动</td>
+                        <td>体育活动</td>
+                        <td></td>
+                        <td>体育活动</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td colspan="5">课外活动</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>19:00-19:40</td>
+                        <td>晚自习</td>
+                        <td>晚自习</td>
+                        <td>晚自习</td>
+                        <td>主题班会</td>
+                        <td>心理健康</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>19:50-20:30</td>
+                        <td>晚自习</td>
+                        <td>晚自习</td>
+                        <td>晚自习</td>
+                        <td>主题班会</td>
+                        <td>百家讲堂</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>周课时</td>
+                        <td>28</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <footer>
@@ -377,45 +566,43 @@
     </footer>
 
     <script>
-        // 星期几的中文表示
         const weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-        
-        // 获取DOM元素
         const dateDisplay = document.getElementById('dateDisplay');
         const hoursDisplay = document.getElementById('hours');
         const minutesDisplay = document.getElementById('minutes');
         const secondsDisplay = document.getElementById('seconds');
         
-        // 更新时间显示
         function updateTime() {
-            // 创建北京时间对象
             const now = new Date();
-            
-            // 获取年、月、日、星期
             const year = now.getFullYear();
             const month = String(now.getMonth() + 1).padStart(2, '0');
             const day = String(now.getDate()).padStart(2, '0');
             const weekday = weekdays[now.getDay()];
-            
-            // 更新日期显示
             dateDisplay.textContent = `${year}-${month}-${day} ${weekday}`;
             
-            // 获取时、分、秒
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
             
-            // 更新时间显示
             hoursDisplay.textContent = hours;
             minutesDisplay.textContent = minutes;
             secondsDisplay.textContent = seconds;
         }
         
-        // 初始化显示
         updateTime();
-        
-        // 每秒更新一次
         setInterval(updateTime, 1000);
+
+        // 防止系统锁屏的逻辑：定时触发页面滚动
+        function preventScreenLock() {
+            // 每次滚动1px后立即滚回，模拟用户活动
+            window.scrollBy(0, 1);
+            setTimeout(() => {
+                window.scrollBy(0, -1);
+            }, 100);
+        }
+
+        // 每2分钟触发一次防止锁屏的动作（可根据系统锁屏时间调整）
+        setInterval(preventScreenLock, 120000);
     </script>
 </body>
 </html>
